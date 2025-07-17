@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form method="POST">
+        {% csrf_token %}
+        <input type="text" name="searchs" placeholder="search">
+        <button type="submit" >Submit</button> 
+       </form>
+    <table>
+        <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Email</th>
+            <th>Department</th>
+            <th>Salary</th>
+            <th>Delete</th>
+            <th>Update</th>
+           
+        </tr>
+        {% for i in data %}
+        <tr>
+             
+            <td>{{i.first_name}}</td>
+            <td>{{i.last_name}}</td>
+            <td>{{i.email}}</td>
+            <td>{{i.department}}</td>
+            <td>{{i.salary}}</td>
+            <th><button><a href="{% url 'emdelete' i.id %}">Delete</a></button></th>
+            <th><button><a href="{% url 'emupdate' i.id %}">Update</a></button></th>
+ 
+        </tr>
+        {% endfor %}
+    </table>
+    
+</body>
+</html>
